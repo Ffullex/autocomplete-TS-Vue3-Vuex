@@ -1,4 +1,4 @@
-# autocompletetsvue
+# vuetsautocomplete
 
 ## Project setup
 ```

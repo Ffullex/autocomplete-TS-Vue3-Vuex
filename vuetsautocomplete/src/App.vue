@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <autocomplete />
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import { Options, Vue } from "vue-class-component";
+import Autocomplete from "@/components/Autocomplete.vue";
 
-@Component({
+@Options({
   components: {
-    HelloWorld,
+    Autocomplete
   },
 })
 export default class App extends Vue {}
