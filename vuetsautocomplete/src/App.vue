@@ -9,7 +9,7 @@ import Autocomplete from "@/components/Autocomplete.vue";
 
 @Options({
   components: {
-    Autocomplete
+    Autocomplete,
   },
 })
 export default class App extends Vue {}
