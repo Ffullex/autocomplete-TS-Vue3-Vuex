@@ -5,4 +5,11 @@ export type Photo = {
   url: string;
 };
 
+export type Human = {
+  id: number;
+  name: string;
+  username: string;
+  url: string;
+};
+
 export type PhotoList = Photo[];
