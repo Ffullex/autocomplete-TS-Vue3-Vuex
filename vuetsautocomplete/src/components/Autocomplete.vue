@@ -1,17 +1,24 @@
 <template>
-  <div>
+  <div class="autocomplete">
     <input
+      class="autocomplete__input"
       id="myUsers"
       name="myUsers"
       v-model="inputValue"
       @focus="onFocus"
     />
-
-    <div v-show="isTyping">
-      <div v-if="isLoading">Loading...</div>
-      <div v-for="human in filteredPeople" :key="human.id" @click="onClick(human.name)">
+    <div class="autocomplete__list__mucosa-external">
+    <div class="autocomplete__list" v-if="isTyping">
+      <div class="loader" id="loader" v-if="isLoading"></div>
+      <div
+        class="autocomplete__list__option"
+        v-for="human in filteredPeople"
+        :key="human.id"
+        @click="onClick(human.name)"
+      >
         {{ human.name }}
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -83,8 +90,75 @@ export default defineComponent({
   },
   unmounted() {
     document.removeEventListener("click", this.onClose);
-  }
+  },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.autocomplete {
+  background-color: black;
+}
+.autocomplete__input {
+  background-color: #f9f9f9;
+  font-size: 22px;
+  width: 343px;
+  height: 56px;
+}
+.autocomplete__list__mucosa-external {
+  max-height: 222px !important;
+}
+.autocomplete__list {
+  background-color: white;
+  max-height: 360px;
+  height: 180px;
+}
+.autocomplete__list__option {
+  margin: 0 auto;
+  background-color: white;
+  font-size: 19px;
+  width: 343px;
+  height: 48px;
+  text-align: left;
+}
+.loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 99%;
+  position: relative;
+  margin: 0 auto;
+}
+#loader:before {
+  z-index: 100;
+  border-radius: 100%;
+  animation: spin 1s infinite;
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border: 5px solid #030000;
+  background: linear-gradient(35deg, transparent 5%, #FF6647 45%, #D6008F 45%);
+  border-image-slice: 1;
+}
+
+#loader:before {
+
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
