@@ -14,14 +14,14 @@
           class="autocomplete__list__option"
           v-for="human in filteredPeople"
           :key="human.id"
-          @click="onClick(human.name)"
-        >
-          {{ human.name }}
+          @click="onClick(human.name)">
+          <div class="autocomplete__list__option__img"><img src="{{human.url}}" alt="" /></div>
+          <div class="autocomplete__list__option__name">{{ human.name }}</div>
+          <div class="autocomplete__list__option__username">@{{ human.username.toLowerCase() }}</div>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -122,6 +122,10 @@ export default defineComponent({
   height: 48px;
   text-align: left;
 }
+.autocomplete__list__option__username {
+  color: #a2a2a2;
+}
+
 .loader {
   pointer-events: none;
   margin-top: 50px;
