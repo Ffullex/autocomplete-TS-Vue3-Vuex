@@ -1,24 +1,37 @@
 <template>
   <div class="autocomplete">
-    <input
-      class="autocomplete__input"
-      id="myUsers"
-      name="myUsers"
-      v-model="inputValue"
-      @focus="onFocus"
-    />
-      <div class="autocomplete__list" v-if="isTyping">
-        <img src="@/assets/Rectangle.png" alt="" class="loader" v-if="isLoading" />
-        <div
-          class="autocomplete__list__option"
-          v-for="human in filteredPeople"
-          :key="human.id"
-          @click="onClick(human.name)">
-          <div class="autocomplete__list__option__img"><img src="{{human.url}}" alt="" /></div>
-          <div>
-            <div class="autocomplete__list__option__name">{{ human.name }}</div>
-            <div class="autocomplete__list__option__username">@{{ human.username.toLowerCase() }}</div>
+    <div class="autocomplete__input">
+      <img src="@/assets/Vector.png" alt="" class="autocomplete__input__search-icon" />
+      <input
+        class="autocomplete__input__field"
+        id="myUsers"
+        name="myUsers"
+        v-model="inputValue"
+        @focus="onFocus"
+      />
+    </div>
+    <div class="autocomplete__list" v-if="isTyping">
+      <img
+        src="@/assets/Rectangle.png"
+        alt=""
+        class="loader"
+        v-if="isLoading"
+      />
+      <div
+        class="autocomplete__list__option"
+        v-for="human in filteredPeople"
+        :key="human.id"
+        @click="onClick(human.name)"
+      >
+        <div class="autocomplete__list__option__img">
+          <img src="{{human.url}}" alt="" class="autocomplete__list__option__img1"/>
+        </div>
+        <div>
+          <div class="autocomplete__list__option__name">{{ human.name }}</div>
+          <div class="autocomplete__list__option__username">
+            @{{ human.username.toLowerCase() }}
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -83,9 +96,6 @@ export default defineComponent({
         return human;
       });
       console.log(this.people);
-      console.log('asdasdasdasfsdafasdf')
-      console.log(people.url)
-      console.log('asdasdasdasfsdafasdf')
       this.isLoading = false;
     },
   },
@@ -101,60 +111,73 @@ export default defineComponent({
 <style scoped lang="scss">
 .autocomplete {
   margin: 0 auto;
-  width: 343px;
+
   &__input {
-    background-color: #f9f9f9;
-    font-size: 22px;
-    height: 56px;
-    width: 343px;
+    min-width: 343px;
+    max-width: 345px;
+    border: 1px solid black;
+    margin: 0 auto;
+    display: inline-flex;
+    &__search-icon {
+      margin: 19px;
+      height: 17px;
+      width: 17px;
+    }
+    &__field {
+      background-color: #f9f9f9;
+      font-size: 22px;
+      height: 56px;
+      border: none;
+      outline: none;
+    }
   }
 
   &__list {
-    background-color: white;
     max-height: 360px;
     height: 180px;
     overflow: auto;
+    min-width: 343px;
+    max-width: 345px;
     margin: 0 auto;
-    scroll-X: none;
-
     &__option {
       margin: 0 auto;
-      background-color: white;
       font-size: 19px;
       height: 48px;
       text-align: left;
       display: flex;
       &__img {
+        margin-right: 8px;
+        border: none;
+      }
+      &__img1 {
+        border: none;
+        background-color: #dedddd;
         width: 40px;
         height: 40px;
         border-radius: 100%;
-        background-color: #2c3e50;
       }
       &__username {
         color: #a2a2a2;
       }
     }
-
-
   }
 }
 
 .loader {
-    pointer-events: none;
-    margin-top: 50px;
-  }
+  pointer-events: none;
+  margin-top: 50px;
+}
 @media (prefers-reduced-motion: no-preference) {
-    .loader {
-      animation: loader-spin infinite 0.9s linear;
-    }
+  .loader {
+    animation: loader-spin infinite 0.9s linear;
   }
+}
 @keyframes loader-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
-
+  to {
+    transform: rotate(360deg);
+  }
+}
 </style>
