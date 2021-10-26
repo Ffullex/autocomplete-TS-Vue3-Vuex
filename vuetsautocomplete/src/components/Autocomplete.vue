@@ -8,17 +8,17 @@
       @focus="onFocus"
     />
     <div class="autocomplete__list__mucosa-external">
-    <div class="autocomplete__list" v-if="isTyping">
-      <div class="loader" id="loader" v-if="isLoading"></div>
-      <div
-        class="autocomplete__list__option"
-        v-for="human in filteredPeople"
-        :key="human.id"
-        @click="onClick(human.name)"
-      >
-        {{ human.name }}
+      <div class="autocomplete__list" v-if="isTyping">
+        <div class="loader" id="loader" v-if="isLoading"></div>
+        <div
+          class="autocomplete__list__option"
+          v-for="human in filteredPeople"
+          :key="human.id"
+          @click="onClick(human.name)"
+        >
+          {{ human.name }}
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -126,26 +126,26 @@ export default defineComponent({
   border-radius: 99%;
   position: relative;
   margin: 0 auto;
+  border: 5px solid #c08686;
 }
-#loader:before {
-  z-index: 100;
-  border-radius: 100%;
-  animation: spin 1s infinite;
+#loader:before, #loader:after {
   content: "";
   position: absolute;
-  top: 50px;
+  top: -10px;
   left: -10px;
   width: 100%;
   height: 100%;
-  border: 5px solid #030000;
-  background: linear-gradient(35deg, transparent 5%, #FF6647 45%, #D6008F 45%);
-  border-image-slice: 1;
+  border-radius: 100%;
+  border: 10px solid transparent;
+  border-top-color: #3498db;
 }
-
-#loader:before {
-
+#loader:before{
+  z-index: 100;
+  animation: spin 1s infinite;
 }
-
+#loader:after {
+  border: 10px solid #ccc;
+}
 @keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
