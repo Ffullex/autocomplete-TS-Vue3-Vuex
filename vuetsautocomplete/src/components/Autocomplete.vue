@@ -7,7 +7,6 @@
       v-model="inputValue"
       @focus="onFocus"
     />
-    <div class="autocomplete__list__mucosa-external">
       <div class="autocomplete__list" v-if="isTyping">
         <img src="@/assets/Rectangle.png" alt="" class="loader" v-if="isLoading" />
         <div
@@ -16,9 +15,10 @@
           :key="human.id"
           @click="onClick(human.name)">
           <div class="autocomplete__list__option__img"><img src="{{human.url}}" alt="" /></div>
-          <div class="autocomplete__list__option__name">{{ human.name }}</div>
-          <div class="autocomplete__list__option__username">@{{ human.username.toLowerCase() }}</div>
-        </div>
+          <div>
+            <div class="autocomplete__list__option__name">{{ human.name }}</div>
+            <div class="autocomplete__list__option__username">@{{ human.username.toLowerCase() }}</div>
+          </div>
       </div>
     </div>
   </div>
@@ -83,6 +83,9 @@ export default defineComponent({
         return human;
       });
       console.log(this.people);
+      console.log('asdasdasdasfsdafasdf')
+      console.log(people.url)
+      console.log('asdasdasdasfsdafasdf')
       this.isLoading = false;
     },
   },
@@ -97,11 +100,13 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .autocomplete {
+  margin: 0 auto;
+  width: 343px;
   &__input {
     background-color: #f9f9f9;
     font-size: 22px;
-    width: 343px;
     height: 56px;
+    width: 343px;
   }
 
   &__list {
@@ -109,36 +114,41 @@ export default defineComponent({
     max-height: 360px;
     height: 180px;
     overflow: auto;
-    max-width: 343px;
     margin: 0 auto;
-    &__mucosa-external {
-      max-height: 222px !important;
-    }
+    scroll-X: none;
 
     &__option {
       margin: 0 auto;
       background-color: white;
       font-size: 19px;
-      width: 343px;
       height: 48px;
       text-align: left;
+      display: flex;
+      &__img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background-color: #2c3e50;
+      }
+      &__username {
+        color: #a2a2a2;
+      }
     }
 
-    &__option__username {
-      color: #a2a2a2;
-    }
+
   }
 }
-  .loader {
+
+.loader {
     pointer-events: none;
     margin-top: 50px;
   }
-  @media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
     .loader {
       animation: loader-spin infinite 0.9s linear;
     }
   }
-  @keyframes loader-spin {
+@keyframes loader-spin {
     from {
       transform: rotate(0deg);
     }
