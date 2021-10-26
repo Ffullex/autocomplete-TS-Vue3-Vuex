@@ -111,13 +111,14 @@ export default defineComponent({
 <style scoped lang="scss">
 .autocomplete {
   margin: 0 auto;
-
+  border-radius: 15px;
   &__input {
     min-width: 343px;
     max-width: 345px;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     margin: 0 auto;
     display: inline-flex;
+    background-color: #f9f9f9;
     &__search-icon {
       margin: 19px;
       height: 17px;
