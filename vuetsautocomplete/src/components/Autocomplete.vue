@@ -24,7 +24,7 @@
         @click="onClick(human.name)"
       >
         <div class="autocomplete__list__option__img">
-          <img src="{{human.url}}" alt="" class="autocomplete__list__option__img1"/>
+          <img :src="human.url" alt="" class="autocomplete__list__option__img1"/>
         </div>
         <div>
           <div class="autocomplete__list__option__name">{{ human.name }}</div>
@@ -49,6 +49,7 @@ export default defineComponent({
       isTyping: false,
       isLoading: false,
       inputValue: "",
+      urlec: "https://via.placeholder.com/600/92c952",
     };
   },
   computed: {
