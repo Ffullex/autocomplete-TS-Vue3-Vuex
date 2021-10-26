@@ -1,5 +1,13 @@
 # vuetsautocomplete
 
+Автокомплит, тестовое задание. 
+
+Задействованы Vue3,  lint (из CLI), Scss, TS.
+(пока) не задействованы VueX, Jest.
+
+Общее время, затраченное на проект ~ 14 часов.
+
+
 ## Project setup
 ```
 npm install
