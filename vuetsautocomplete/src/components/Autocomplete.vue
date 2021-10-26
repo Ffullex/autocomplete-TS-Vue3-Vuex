@@ -9,7 +9,7 @@
     />
     <div class="autocomplete__list__mucosa-external">
       <div class="autocomplete__list" v-if="isTyping">
-        <div class="loader" id="loader" v-if="isLoading"></div>
+        <img src="@/assets/Rectangle.png" alt="" class="loader" v-if="isLoading" />
         <div
           class="autocomplete__list__option"
           v-for="human in filteredPeople"
@@ -21,6 +21,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -95,9 +96,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.autocomplete {
-  background-color: black;
-}
+
 .autocomplete__input {
   background-color: #f9f9f9;
   font-size: 22px;
@@ -111,6 +110,9 @@ export default defineComponent({
   background-color: white;
   max-height: 360px;
   height: 180px;
+  overflow: auto;
+  max-width: 343px;
+  margin: 0 auto;
 }
 .autocomplete__list__option {
   margin: 0 auto;
@@ -121,43 +123,19 @@ export default defineComponent({
   text-align: left;
 }
 .loader {
-  width: 100px;
-  height: 100px;
-  border-radius: 99%;
-  position: relative;
-  margin: 0 auto;
-  border: 5px solid #c08686;
+  pointer-events: none;
+  margin-top: 50px;
 }
-#loader:before, #loader:after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border: 10px solid transparent;
-  border-top-color: #3498db;
+@media (prefers-reduced-motion: no-preference) {
+  .loader {
+    animation: loader-spin infinite 0.9s linear;
+  }
 }
-#loader:before{
-  z-index: 100;
-  animation: spin 1s infinite;
-}
-#loader:after {
-  border: 10px solid #ccc;
-}
-@keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+@keyframes loader-spin {
+  from {
     transform: rotate(0deg);
   }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
+  to {
     transform: rotate(360deg);
   }
 }
