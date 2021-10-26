@@ -95,52 +95,56 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.autocomplete {
+  &__input {
+    background-color: #f9f9f9;
+    font-size: 22px;
+    width: 343px;
+    height: 56px;
+  }
 
-.autocomplete__input {
-  background-color: #f9f9f9;
-  font-size: 22px;
-  width: 343px;
-  height: 56px;
-}
-.autocomplete__list__mucosa-external {
-  max-height: 222px !important;
-}
-.autocomplete__list {
-  background-color: white;
-  max-height: 360px;
-  height: 180px;
-  overflow: auto;
-  max-width: 343px;
-  margin: 0 auto;
-}
-.autocomplete__list__option {
-  margin: 0 auto;
-  background-color: white;
-  font-size: 19px;
-  width: 343px;
-  height: 48px;
-  text-align: left;
-}
-.autocomplete__list__option__username {
-  color: #a2a2a2;
-}
+  &__list {
+    background-color: white;
+    max-height: 360px;
+    height: 180px;
+    overflow: auto;
+    max-width: 343px;
+    margin: 0 auto;
+    &__mucosa-external {
+      max-height: 222px !important;
+    }
 
-.loader {
-  pointer-events: none;
-  margin-top: 50px;
+    &__option {
+      margin: 0 auto;
+      background-color: white;
+      font-size: 19px;
+      width: 343px;
+      height: 48px;
+      text-align: left;
+    }
+
+    &__option__username {
+      color: #a2a2a2;
+    }
+  }
 }
-@media (prefers-reduced-motion: no-preference) {
   .loader {
-    animation: loader-spin infinite 0.9s linear;
+    pointer-events: none;
+    margin-top: 50px;
   }
-}
-@keyframes loader-spin {
-  from {
-    transform: rotate(0deg);
+  @media (prefers-reduced-motion: no-preference) {
+    .loader {
+      animation: loader-spin infinite 0.9s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+  @keyframes loader-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
-}
+
 </style>
