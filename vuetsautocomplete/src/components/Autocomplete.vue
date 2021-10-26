@@ -137,10 +137,14 @@ export default defineComponent({
   &__list {
     max-height: 360px;
     height: 180px;
-    overflow: auto;
+    overflow: hidden;
     min-width: 343px;
     max-width: 345px;
     margin: 0 auto;
+    &__option:hover {
+      background-color: #e5e5e5;
+      cursor: pointer;
+    }
     &__option {
       margin: 0 auto;
       font-size: 19px;
@@ -148,11 +152,10 @@ export default defineComponent({
       text-align: left;
       display: flex;
       &__img {
-        margin-right: 8px;
-        border: none;
+        margin-right: 4px;
       }
       &__img1 {
-        border: none;
+        margin: 4px;
         background-color: #dedddd;
         width: 40px;
         height: 40px;
