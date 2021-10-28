@@ -81,11 +81,11 @@ export default defineComponent({
     async getInfo() {
       this.isLoading = true;
       this.people = [];
-      const apiUser = await fetch("https://jsonplaceholder.typicode.com/users");
+      const [apiUser, apiPhoto] = await Promise.all([
+        fetch("https://jsonplaceholder.typicode.com/users"),
+        fetch("https://jsonplaceholder.typicode.com/photos")
+      ]);
       const people = await apiUser.json();
-      const apiPhoto = await fetch(
-        "https://jsonplaceholder.typicode.com/photos"
-      );
       const photos: PhotoList = await apiPhoto.json();
       this.people = people.map((human: Human) => {
         const photo = photos.find(
