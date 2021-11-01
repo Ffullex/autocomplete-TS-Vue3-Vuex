@@ -302,7 +302,7 @@ const responsePhotos = [
   },
 ];
 describe("Autocomplete.vue", () => {
-  // первый нерабочий
+  // первая провальная попытка
   // beforeEach(() => {
   //   fetchMock.mockIf("https://jsonplaceholder.typicode.com/users", () => {
   //     console.log("firstMock")
@@ -329,7 +329,10 @@ describe("Autocomplete.vue", () => {
   });
 
   it("Тест fetch", async () => {
-    fetch.mockResponses(JSON.stringify(responseUsers), JSON.stringify(responsePhotos));
+    fetch.mockResponses(
+      JSON.stringify(responseUsers),
+      JSON.stringify(responsePhotos)
+    );
     const wrapper = shallowMount(Autocomplete);
     const input = wrapper.find("#myUsers");
     await input.trigger("focus");
@@ -338,12 +341,13 @@ describe("Autocomplete.vue", () => {
     // await wrapper.vm.$nextTick();
     // await wrapper.vm.$nextTick();
     // await wrapper.vm.$nextTick();
-    // второй: стэйт меняется 4 раза, но есть метод и более наркоманский, setTimeout выполняется после промисов:
+    // вторая попытка, менее провальная, но не по TDD:
+    // стэйт меняется 4 раза, но есть метод и более наркоманский, setTimeout выполняется после промисов:
 
+    //3 попытка
     setTimeout(() => {
       console.log(wrapper.html());
-      expect(wrapper.findAll(".autocomplete__list__option").length).toBe(10)
-    }, 0)
-
+      expect(wrapper.findAll(".autocomplete__list__option").length).toBe(10);
+    }, 0);
   });
 });
