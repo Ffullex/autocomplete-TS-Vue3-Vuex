@@ -68,11 +68,9 @@ export default defineComponent({
   },
   methods: {
     onFocus() {
-      console.log(123);
       this.isTyping = true;
       this.inputValue = "";
       this.getInfo();
-      console.log(123);
     },
     onClose(event: Event) {
       console.log(event);
