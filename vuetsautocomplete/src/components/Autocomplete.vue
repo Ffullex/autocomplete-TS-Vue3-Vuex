@@ -1,16 +1,20 @@
 <template>
   <div class="autocomplete">
     <div class="autocomplete__input">
-      <img src="@/assets/Vector.png" alt="" class="autocomplete__input__search-icon" />
+      <img
+        src="@/assets/Vector.png"
+        alt=""
+        class="autocomplete__input__search-icon"
+      />
       <input
         class="autocomplete__input__field"
         id="myUsers"
-        name="myUsers"
+        data-test="UserInput"
         v-model="inputValue"
         @focus="onFocus"
       />
     </div>
-    <div class="autocomplete__list" v-if="isTyping">
+    <div class="autocomplete__list" v-if="isTyping" data-test="list">
       <img
         src="@/assets/Rectangle.png"
         alt=""
@@ -24,7 +28,11 @@
         @click="onClick(human.name)"
       >
         <div class="autocomplete__list__option__img">
-          <img :src="human.url" alt="" class="autocomplete__list__option__img1"/>
+          <img
+            :src="human.url"
+            alt=""
+            class="autocomplete__list__option__img1"
+          />
         </div>
         <div>
           <div class="autocomplete__list__option__name">{{ human.name }}</div>
@@ -49,7 +57,6 @@ export default defineComponent({
       isTyping: false,
       isLoading: false,
       inputValue: "",
-      urlec: "https://via.placeholder.com/600/92c952",
     };
   },
   computed: {
@@ -61,9 +68,11 @@ export default defineComponent({
   },
   methods: {
     onFocus() {
+      console.log(123);
       this.isTyping = true;
       this.inputValue = "";
       this.getInfo();
+      console.log(123);
     },
     onClose(event: Event) {
       console.log(event);
@@ -79,11 +88,12 @@ export default defineComponent({
       this.isTyping = false;
     },
     async getInfo() {
+      // this.$store.dispatch("getPeople")
       this.isLoading = true;
       this.people = [];
       const [apiUser, apiPhoto] = await Promise.all([
         fetch("https://jsonplaceholder.typicode.com/users"),
-        fetch("https://jsonplaceholder.typicode.com/photos")
+        fetch("https://jsonplaceholder.typicode.com/photos"),
       ]);
       const people = await apiUser.json();
       const photos: PhotoList = await apiPhoto.json();
@@ -96,7 +106,6 @@ export default defineComponent({
         }
         return human;
       });
-      console.log(this.people);
       this.isLoading = false;
     },
   },
